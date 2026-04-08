@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="./favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="./favicon/favicon.svg" />
+    <link rel="shortcut icon" href="./favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Чемпионат по промптингу" />
+    <link rel="manifest" href="./favicon/site.webmanifest" />
+    <title>Чемпионат по промптингу - Спортмастер</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'championship-blue': '#ff5a24',
+                        'championship-dark-blue': '#ff9532',
+                        'championship-red': '#ff0016',
+                        'championship-gray': '#0f0f0f',
+                        'championship-text': '#ffffff',
+                        'championship-text-light': '#f0f0f0'
+                    },
+                    fontFamily: {
+                        'championship': ['Roboto', 'sans-serif']
+                    },
+                    borderRadius: {
+                        'championship': '18px',
+                        'championship-lg': '28px'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @font-face {
+            font-family: 'CoFoKak';
+            src: url('fonts/CoFoKak-Black-base.woff2') format('woff2')
+            font-weight: 900;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'CoFoSans';
+            src: url('fonts/CoFoSans-base.woff2') format('woff2')
+            font-weight: 400;
+            font-style: normal;
+        }
+        body {
+            font-family: 'CoFoSans', 'Roboto', sans-serif;
+        }
+        .rotate {
+            animation: rotate 1s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body class="bg-black text-white min-h-screen">
+    <!-- Header -->
+    <header class="w-full py-4 px-6 bg-championship-blue">
+        <div class="flex items-center justify-between max-w-6xl mx-auto">
+            <!-- QR Code Button -->
+            <button id="qrButton" class="p-2 text-red-100 hover:text-white transition-colors duration-200">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path>
+                </svg>
+            </button>
+            
+            <!-- Title -->
+            <div class="center">
+                <span class="text-2s font-bold text-white">Чемпионат по промптингу</h1>
+            </div>
+
+            <!-- Auth Button -->
+            <button id="authButton" class="p-2 text-red-100 hover:text-white transition-colors duration-200">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"></path>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-6 py-8">
+
+
+        
+<div class="justify-center flex pb-6">
+<svg class="w-48" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 107 40"><g clip-path="url(#a)"><path fill="#fff" d="m81.068 26.236-6.803-6.725 6.342-6.367a.24.24 0 0 0-.037-.37.242.242 0 0 0-.134-.04H73.71l-5.726 5.925v-5.925H61.85v13.908h6.135v-6.053l5.963 6.056h6.947a.24.24 0 0 0 .24-.286.24.24 0 0 0-.067-.123ZM52.994 12.734v7.16l-6.737-7.16h-5.835v13.912h5.835v-7.16l6.737 7.16h5.847V12.734h-5.847ZM23.82 12.733l-2.839 8.478-2.983-8.478H11.5L8.517 21.21l-2.84-8.478H.242a.242.242 0 0 0-.239.206.24.24 0 0 0 .011.112L4.68 26.645h7.135l2.875-8.155 2.878 8.155h7.133L29.37 13.05a.239.239 0 0 0-.118-.291.242.242 0 0 0-.11-.027h-5.32ZM37.415 12.734H31.28v13.912h6.136V12.734Z"></path><path fill="url(#b)" d="m92.799 6.2-6.03 6.011a.683.683 0 0 0 0 .966l6.515 6.495-6.546 6.53a.683.683 0 0 0 0 .967l6.03 6.01a.683.683 0 0 0 .747.149.684.684 0 0 0 .222-.148L106.8 20.158a.685.685 0 0 0 0-.967L93.769 6.2a.687.687 0 0 0-.97 0Z"></path></g><defs><linearGradient id="b" x1="79.941" x2="112.959" y1="24.613" y2="12.338" gradientUnits="userSpaceOnUse"><stop stop-color="#FF9532"></stop><stop offset="0.17" stop-color="#FF8A1C"></stop><stop offset="0.51" stop-color="#FF5B21"></stop><stop offset="0.79" stop-color="#FF5A24"></stop></linearGradient><clipPath id="a"><path fill="#fff" d="M0 6h107v28H0z"></path></clipPath></defs></svg>
+</div>
+
+
+        <!-- Dashboard -->
+        <div class="bg-championship-gray rounded-championship-lg p-8 mb-8 border border-[#222]">
+            <div class="flex items-center justify-between mb-8">
+                <h2 class="text-2xl font-bold mb-2">Общий дашборд <span id="teamName" class="text-gray-500 font-thin"></span></h2>
+                <button id="refreshButton" class="p-3 text-championship-blue hover:text-championship-red transition-all duration-200 hover:bg-blue-50 rounded-full">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                    </svg>
+                </button>
+            </div>
+
+<div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 text-white">
+        <div class="flex flex-col">
+            <div class="bg-gradient-to-br from-championship-dark-blue to-championship-blue rounded-championship-lg text-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex-grow flex flex-col">
+                <div class="w-12 h-12 bg-championship-blue bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4 mt-6">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                    </svg>
+                </div>
+                <div id="completed1" class="text-3xl font-bold mb-2">0</div>
+                <div class="text-sm font-medium text-opacity-90 mb-4 flex-grow">Придумали название и&nbsp;девиз команды</div>
+            </div>
+            <!-- Кнопка для капитана -->
+            <button id="btn1" class="assignment-btn hidden w-full mt-2 py-2 px-4 rounded-championship font-medium text-gray-500 bg-gray-200 bg-opacity-0 hover:text-white hover:bg-opacity-20 transition-colors" data-assignment="1">
+                Отправить
+            </button>
+        </div>
+
+        <div class="flex flex-col">
+            <div class="bg-gradient-to-br from-championship-dark-blue to-championship-blue rounded-championship-lg text-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex-grow flex flex-col">
+                <div class="w-12 h-12 bg-championship-blue bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4 mt-6">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"></path>
+                    </svg>
+                </div>
+                <div id="completed2" class="text-3xl font-bold mb-2">0</div>
+                <div class="text-sm font-medium text-opacity-90 mb-4 flex-grow">Проанализировали интересы ЦА</div>
+            </div>
+            <!-- Кнопка для капитана -->
+            <button id="btn2" class="assignment-btn hidden w-full mt-2 py-2 px-4 rounded-championship font-medium text-gray-500 bg-gray-200 bg-opacity-0 hover:text-white hover:bg-opacity-20 transition-colors" data-assignment="2">
+                Отправить
+            </button>
+        </div>
+
+        <div class="flex flex-col">
+            <div class="bg-gradient-to-br from-championship-dark-blue to-championship-blue rounded-championship-lg text-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex-grow flex flex-col">
+                <div class="w-12 h-12 bg-championship-blue bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4 mt-6">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <div id="completed3" class="text-3xl font-bold mb-2">0</div>
+                <div class="text-sm font-medium text-opacity-90 mb-4 flex-grow">Создали лог-лайн и&nbsp;синопсис</div>
+            </div>
+            <!-- Кнопка для капитана -->
+            <button id="btn3" class="assignment-btn hidden w-full mt-2 py-2 px-4 rounded-championship font-medium text-gray-500 bg-gray-200 bg-opacity-0 hover:text-white hover:bg-opacity-20 transition-colors" data-assignment="3">
+                Отправить
+            </button>
+        </div>
+
+        <div class="flex flex-col">
+            <div class="bg-gradient-to-br from-championship-dark-blue to-championship-blue rounded-championship-lg text-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex-grow flex flex-col">
+                <div class="w-12 h-12 bg-championship-blue bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4 mt-6">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                </div>
+                <div id="completed4" class="text-3xl font-bold mb-2">0</div>
+                <div class="text-sm font-medium text-opacity-90 mb-4 flex-grow">Придумали сценарий мини-драмы</div>
+            </div>
+            <!-- Кнопка для капитана -->
+            <button id="btn4" class="assignment-btn hidden w-full mt-2 py-2 px-4 rounded-championship font-medium text-gray-500 bg-gray-200 bg-opacity-0 hover:text-white hover:bg-opacity-20 transition-colors" data-assignment="4">
+                Отправить
+            </button>
+        </div>
+
+        <div class="flex flex-col">
+            <div class="bg-gradient-to-br from-championship-dark-blue to-championship-blue rounded-championship-lg text-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex-grow flex flex-col">
+                <div class="w-12 h-12 bg-championship-blue bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4 mt-6">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                    </svg>
+                </div>
+                <div id="completed5" class="text-3xl font-bold mb-2">0</div>
+                <div class="text-sm font-medium text-opacity-90 mb-4 flex-grow">Сгенерировали постер для своего проекта</div>
+            </div>
+            <!-- Кнопка для капитана -->
+            <button id="btn5" class="assignment-btn hidden w-full mt-2 py-2 px-4 rounded-championship font-medium text-gray-500 bg-gray-200 bg-opacity-0 hover:text-white hover:bg-opacity-20 transition-colors" data-assignment="5">
+                Отправить
+            </button>
+        </div>
+
+        <div class="flex flex-col">
+            <div class="bg-gradient-to-br from-championship-dark-blue to-championship-blue rounded-championship-lg text-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex-grow flex flex-col">
+                <div class="w-12 h-12 bg-championship-blue bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4 mt-6">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.944-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.944.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.944 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.944 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.944.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.944-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.944 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.944 3.42 3.42 0 013.138-3.138z"></path>
+                    </svg>
+                </div>
+                <div id="completed6" class="text-3xl font-bold mb-2">0</div>
+                <div class="text-sm font-medium text-opacity-90 mb-4 flex-grow">Создали рекламный пост для соцсетей</div>
+            </div>
+            <!-- Кнопка для капитана -->
+            <button id="btn6" class="assignment-btn hidden w-full mt-2 py-2 px-4 rounded-championship font-medium text-gray-500 bg-gray-200 bg-opacity-0 hover:text-white hover:bg-opacity-20 transition-colors" data-assignment="6">
+                Отправить
+            </button>
+        </div>
+    </div>
+</div>
+
+            <!-- Progress Bar -->
+            <div class="mt-8">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-semibold">Общий прогресс (<span id="totalTeams" class="font-bold">0</span> команд)</h3>
+                    <span id="progressPercentage" class="text-sm font-medium text-championship-text-light">0%</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-3">
+                    <div id="progressBar" class="bg-gradient-to-r from-championship-blue to-championship-red h-3 rounded-full transition-all duration-500" style="width: 0%"></div>
+                </div>
+                <div class="flex justify-between text-xs text-championship-text-light mt-2">
+                    <span>Выполнено заданий</span>
+                    <span id="totalAssignments">0 из 0 возможных</span>
+                </div>
+            </div>
+
+            <div class="relative mt-4 overflow-hidden border border-[#222] rounded-xl text-gray-500">
+              <input type="checkbox" class="peer absolute inset-x-0 top-0 z-10 h-12 w-full cursor-pointer opacity-0" />
+              <div class="flex h-12 w-full items-center p-4 font-medium">
+                Как проходит чемпионат?
+              </div>
+              <div class="max-h-0 overflow-hidden transition-all duration-300 peer-checked:max-h-40">
+                <div class="p-4 border-t border-[#222]">
+                    <ol class="list-decimal ml-4 marker:text-white marker:text-small">
+                  <li>Задания 1, 2 и 3 делаем вместе</li>
+                  <li>Задания 4, 5 и 6 вы делаете самостоятельно</li>
+                  <li>После выполнения всех заданий - вы самостоятельно готовитесь к питчу (можно использовать ИИ)</li>
+                  <li>Питчи команд-победителей будет во второй день</li>
+                  <li>Победители станут известны в последний момент :)</li>
+                    </ol>
+                </div>
+              </div>
+            </div>
+
+        </div>
+
+        <!-- Leaderboard -->
+        <div class="bg-championship-gray rounded-championship-lg p-8 mb-8 border border-[#222]">
+            <h2 class="text-xl font-bold mb-6">Рейтинг команд</h2>
+            <div id="leaderboard">
+                <div class="text-center text-championship-text-light py-8">
+                    <svg class="w-12 h-12 mx-auto mb-4 text-championship-text-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <p>Пока нет ни одной команды</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Auth Modal -->
+    <div id="authModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-championship-lg shadow-xl max-w-md w-full p-6">
+                <h3 class="text-xl font-bold text-black mb-6">Вход в систему</h3>
+                
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-black mb-2">Выберите роль:</label>
+                    <div class="space-y-2">
+                        <label class="flex items-center">
+                            <input type="radio" name="role" value="captain" class="text-black focus:ring-orange-700">
+                            <span class="ml-2 text-black">Капитан команды</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="role" value="observer" class="text-black focus:ring-orange-700">
+                            <span class="ml-2 text-black">Наблюдатель</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div id="teamNameInput" class="mb-6 hidden">
+                    <label class="block text-sm font-medium text-black mb-2">Название команды:</label>
+                    <input type="text" id="teamNameField" class="w-full px-3 py-2 border border-gray-300 rounded-championship focus:outline-none focus:ring-2 focus:ring-championship-blue focus:border-transparent text-black" placeholder="Введите название команды">
+                </div>
+
+                <div class="flex space-x-4">
+                    <button id="loginButton" class="flex-1 bg-championship-blue text-white py-2 px-4 rounded-championship font-medium hover:bg-opacity-90 transition-all duration-200">
+                        Войти
+                    </button>
+                    <button id="cancelButton" class="flex-1 bg-gray-300 text-championship-text py-2 px-4 rounded-championship font-medium hover:bg-opacity-90 transition-all duration-200">
+                        Отмена
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Answer Modal -->
+    <div id="answerModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-championship-lg shadow-xl max-w-2xl w-full p-6">
+                <h3 id="answerModalTitle" class="text-xl font-bold text-black mb-4">Задание 1</h3>
+                
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-championship-text mb-2">Ваш ответ:</label>
+                    <textarea id="answerText" rows="8" class="w-full px-3 py-2 border border-gray-300 rounded-championship focus:outline-none focus:ring-2 focus:ring-championship-blue focus:border-transparent resize-none text-black" placeholder="Введите ваш ответ на задание..."></textarea>
+                </div>
+
+                <div class="mb-6 p-3 bg-yellow-50 border border-yellow-200 rounded-championship">
+                    <div class="flex items-center">
+                        <svg class="w-5 h-5 text-yellow-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+                        </svg>
+                        <span class="text-sm text-yellow-800">После отправки изменить ответ будет невозможно</span>
+                    </div>
+                </div>
+
+                <div class="flex space-x-4">
+                    <button id="submitAnswerButton" class="flex-1 bg-championship-blue text-white py-2 px-4 rounded-championship font-medium hover:bg-opacity-90 transition-all duration-200">
+                        Отправить
+                    </button>
+                    <button id="cancelAnswerButton" class="flex-1 bg-gray-300 text-championship-text py-2 px-4 rounded-championship font-medium hover:bg-opacity-90 transition-all duration-200">
+                        Отмена
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Links Modal -->
+    <div id="linksModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+        <div class="flex items-center justify-center min-h-screen p-2 sm:p-4">
+            <div class="bg-white rounded-championship-lg shadow-xl w-full max-w-6xl max-h-[90vh] flex flex-col">
+                <!-- Header with close button -->
+                <div class="flex items-center justify-between p-4 sm:p-6 border-b border-gray-200">
+                    <h3 class="text-xl font-bold text-black">Нейрошлюз: <a href="https://ai.rt.ru/" class="text-championship-blue hover:text-championship-red transition-colors duration-200">https://ai.rt.ru/</a></h3>
+                    <button id="closeLinksModalTop" class="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-full transition-all duration-200">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <!-- Scrollable content -->
+                <div class="flex-1 overflow-y-auto p-4 sm:p-6">
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+                        <!-- DeepSeek -->
+                        <div class="text-center">
+                            <h4 class="text-lg font-semibold text-championship-text mb-4">DeepSeek</h4>
+                            <div class="mb-4">
+                                <img src="./QRs/deepseek.png" alt="DeepSeek QR Code" class="w-32 h-32 sm:w-40 sm:h-40 mx-auto rounded-championship shadow-sm">
+                            </div>
+                            <a href="https://chat.deepseek.com" target="_blank" class="text-championship-blue hover:text-championship-red transition-colors duration-200 text-sm break-all">
+                                https://chat.deepseek.com
+                            </a>
+                        </div>
+
+                        <!-- Qwen -->
+                        <div class="text-center">
+                            <h4 class="text-lg font-semibold text-championship-text mb-4">Qwen</h4>
+                            <div class="mb-4">
+                                <img src="./QRs/qwen.png" alt="Qwen QR Code" class="w-32 h-32 sm:w-40 sm:h-40 mx-auto rounded-championship shadow-sm">
+                            </div>
+                            <a href="https://chat.qwen.ai/" target="_blank" class="text-championship-blue hover:text-championship-red transition-colors duration-200 text-sm break-all">
+                                https://chat.qwen.ai/
+                            </a>
+                        </div>
+
+                        <!-- Mistral -->
+                        <div class="text-center">
+                            <h4 class="text-lg font-semibold text-championship-text mb-4">Mistral</h4>
+                            <div class="mb-4">
+                                <img src="./QRs/mistral.png" alt="Mistral QR Code" class="w-32 h-32 sm:w-40 sm:h-40 mx-auto rounded-championship shadow-sm">
+                            </div>
+                            <a href="https://chat.mistral.ai" target="_blank" class="text-championship-blue hover:text-championship-red transition-colors duration-200 text-sm break-all">
+                                https://chat.mistral.ai
+                            </a>
+                        </div>
+
+                            <!-- perplexity -->
+                            <div class="text-center">
+                            <h4 class="text-lg font-semibold text-championship-text mb-4">Perplexity</h4>
+                            <div class="mb-4">
+                                <img src="./QRs/perplexity.png" alt="Perplexity QR Code" class="w-32 h-32 sm:w-40 sm:h-40 mx-auto rounded-championship shadow-sm">
+                            </div>
+                            <a href="https://www.perplexity.ai/" target="_blank" class="text-championship-blue hover:text-championship-red transition-colors duration-200 text-sm break-all">
+                                https://www.perplexity.ai/
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer with close button -->
+                <div class="p-4 sm:p-6 border-t border-gray-200 bg-gray-50">
+                    <div class="p-4 my-4 border border-gray-300 text-black">Можем разместить информацию в этом месте</div>
+                    <button id="closeLinksModal" class="w-full bg-championship-blue text-white py-3 px-4 rounded-championship font-medium hover:bg-opacity-90 transition-all duration-200">
+                        Закрыть
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
